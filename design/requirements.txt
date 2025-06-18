@@ -1,0 +1,11 @@
+streamlit
+streamlit-option-menu
+streamlit-cookies-manager
+pymongo
+aiofile
+
+request
+fastapi
+uvicorn
+python-jose[cryptography]
+passlib[bcrypt]
