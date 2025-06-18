@@ -5,7 +5,7 @@ import asyncio
 from aiofile import async_open
 
 async def load_mappings():
-    async with async_open('../models/mm_eng_mapping.json', 'r') as f:
+    async with async_open('./models/mm_eng_mapping.json', 'r') as f:
         response_mm = await f.read()
    
 
