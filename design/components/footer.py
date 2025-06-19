@@ -2,8 +2,8 @@ def render_footer():
     import streamlit as st
 
     theme = "light"
-    bg_color = "#f0f0f0" if theme == "light" else "#2e2e2e"
-    text_color = "#000" if theme == "light" else "#fff"
+    bg_color = "#ebeaf3" if theme == "light" else "#2e2e2e"
+    text_color = "#200AC1" if theme == "light" else "#fff"
 
     st.markdown(f"""
     <style>

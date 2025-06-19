@@ -1,38 +1,93 @@
 import streamlit as st
-
+import pandas as pd
 def show():
     st.title("Use API")
-    st.divider()
 
     with st.expander("Myanmar to English Converter API Keys"):
-
         with st.container():
             st.subheader("Myanmar to English Converter API")
-            st.divider()
-            st.write("$username = admin")
-            st.write("$password = nc")
-            st.write("$end-point = http:\\localhost:8000\myanmar_to_english")
+          
+            st.write("Step1 : call token")
+            df = pd.DataFrame({
+                "Field": ["Method", "URL"],
+                "Value": ["POST", "http://localhost:8000/token"]
+            })
+            st.dataframe(df, hide_index=True)
+            st.write("Headers Tab မှာထည့်ပါ")
             code="""
-                def fun():
-                    print("hello")
+               Content-Type : application/x-www-form-urlencoded
 
             """
-            st.code(code,language="python",line_numbers=True,wrap_lines=True,)
+            st.code(code,language="bash",line_numbers=True,wrap_lines=True,)
+
+            st.markdown("""
+                         Body Tab မှာရွေးပါ : x-www-form-urlencoded
+                        """)
+            df = pd.DataFrame({
+                "Key": ["username", "password"],
+                "Value": ["admin", "nc"]
+            })
+            st.dataframe(df, hide_index=True)
+            st.write("token ရမည်")
+
+            code="""
+               "access_token" : "application/x-www-form-urlencoded",
+               "token_type"  : "bearer"
+
+            """
+            st.code(code,language="bash",line_numbers=True,wrap_lines=True,)
+
+            st.write("Step2 : call ./myanmar_to_english")
+            df = pd.DataFrame({
+                "Field": ["Method", "URL"],
+                "Value": ["POST", "http://localhost:8000/myanmar_to_english"]
+            })
+            st.dataframe(df, hide_index=True)
+
+           
+            
     
     with st.expander("Parli to Roman Converter API Keys"):
 
-        with st.container():
+       with st.container():
             st.subheader("Parli to Roman Converter API Keys")
-            st.divider()
-            st.write("$username = admin")
-            st.write("$password = nc")
-            st.write("$end-point = http:\\localhost:8000\myanmar_to_english")
+         
+            st.write("Step1 : call token")
+            df = pd.DataFrame({
+                "Field": ["Method", "URL"],
+                "Value": ["POST", "http://localhost:8000/token"]
+            })
+            st.dataframe(df, hide_index=True)
+            st.write("Headers Tab မှာထည့်ပါ")
             code="""
-                def fun():
-                    print("hello")
+               Content-Type : application/x-www-form-urlencoded
 
             """
-            st.code(code,language="python",line_numbers=True,wrap_lines=True,)
+            st.code(code,language="bash",line_numbers=True,wrap_lines=True,)
+
+            st.markdown("""
+                         Body Tab မှာရွေးပါ : x-www-form-urlencoded
+                        """)
+            df = pd.DataFrame({
+                "Key": ["username", "password"],
+                "Value": ["admin", "nc"]
+            })
+            st.dataframe(df, hide_index=True)
+            st.write("token ရမည်")
+
+            code="""
+               "access_token" : "application/x-www-form-urlencoded",
+               "token_type"  : "bearer"
+
+            """
+            st.code(code,language="bash",line_numbers=True,wrap_lines=True,)
+
+            st.write("Step2 : call ./parli_to_roman ")
+            df = pd.DataFrame({
+                "Field": ["Method", "URL"],
+                "Value": ["POST", "http://localhost:8000/parli_to_roman "]
+            })
+            st.dataframe(df, hide_index=True)
 
     st.title("How to use API with any language")
 
@@ -40,7 +95,7 @@ def show():
 
         with st.container():
             st.subheader("How to call curl language (bash)")
-            st.divider()
+           
             st.write("✅ Step 1: Token ရယူခြင်း (/token)")
             code="""
                 curl -X POST "http://localhost:8000/token" \
@@ -81,7 +136,7 @@ def show():
 
         with st.container():
             st.subheader("How to call python language")
-            st.divider()
+           
             st.write("✅ python မှာ အရင်ဆုံး ဒါကို install လုပ်ပါ")
            
             code="""
@@ -162,7 +217,7 @@ def show():
 
         with st.container():
             st.subheader("How to call php language")
-            st.divider()
+           
             st.write("✅ ဒါကို copy ယူပြီး အသုံးပြုနိုင်ပါတယ်")
            
             code="""
@@ -268,7 +323,7 @@ def show():
 
         with st.container():
             st.subheader("How to call nodejs language")
-            st.divider()
+         
             st.write("✅ Node.js Version (Axios သုံးထားပါတယ်)")
            
             code="""

@@ -4,7 +4,7 @@ def render_header():
     theme = "light"
 
     bg_color = "#ffffff" if theme == "light" else "#1f1f1f"
-    text_color = "#000000" if theme == "light" else "#ffffff"
+    text_color = "#140479" if theme == "light" else "#ffffff"
 
     st.markdown(f"""
     <style>
@@ -13,8 +13,10 @@ def render_header():
         color: {text_color};
         padding: 1em;
         text-align: center;
-        font-size: 1.8em;
+        font-size: 2.2em;
         border-bottom: 1px solid #ddd;
+        font-weight: bold; 
+
     }}
     </style>
     """, unsafe_allow_html=True)

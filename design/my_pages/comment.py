@@ -2,7 +2,6 @@ import streamlit as st
 from pymongo import MongoClient
 from datetime import datetime
 import uuid
-from streamlit_modal import Modal
 import hashlib
 import os
 
@@ -10,7 +9,7 @@ def show(cookies):
     # MongoDB Connection
     client = MongoClient("mongodb://localhost:27017/")
     db = client["comment_system"]
-    comments_collection = db["comments1"]
+    comments_collection = db["comments"]
     users_collection = db["users"]
 
     
@@ -55,8 +54,7 @@ def show(cookies):
     </style>
     """, unsafe_allow_html=True)
 
-    # Modal for Reply Form
-    modal = Modal(key="Reply Modal", title="🖋️ Write a Reply")
+
 
     # User Authentication Functions
     def create_user(username, password):
@@ -110,6 +108,7 @@ def show(cookies):
                     else:
                         st.error("Username already exists")
 
+    # @st.cache_data(experimental_allow_widgets =True)
     def display_comments(parent_id=None, depth=0):
         """Recursively display comments"""
         query = {"postId": POST_ID, "parentId": parent_id}
@@ -145,6 +144,7 @@ def show(cookies):
                 with col3:
                     if cookies.get("user")!= "" and st.button("💬 Reply", key=f"reply_{comment['_id']}"):
                         cookies["replying_to"] = comment["_id"]
+                        st.rerun()
 
                 # Show expander if this is the one we're replying to
                 if cookies.get("replying_to") == comment["_id"]:
@@ -154,7 +154,9 @@ def show(cookies):
                         col=st.columns(4,gap="small",)
                         
                         if col[0].button("📤 Submit Reply", key=f"submit_reply_{comment['_id']}",use_container_width=True):
+                            print("reply")
                             if reply_text.strip():
+                                print("ok reply")
                                 reply_data = {
                                     "_id": uuid.uuid4().hex,
                                     "userId": cookies.get("user"),
@@ -166,16 +168,18 @@ def show(cookies):
                                     "createdAt": datetime.utcnow()
                                 }
                                 comments_collection.insert_one(reply_data)
-                                st.success("✅ Reply added!")
+                                # st.success("✅ Reply added!")
                                 cookies["replying_to"] = ""
                                 st.rerun()
                         if col[1].button("Cancel",use_container_width=True):
                             cookies["replying_to"] = ""
                             st.rerun()
 
+                
+
                 # Recursively show replies
                 display_comments(comment["_id"], depth + 1)
-                
+             
     def add_comment():
         st.subheader("🗨️ Comments")
         display_comments()
@@ -185,7 +189,12 @@ def show(cookies):
 
             # New Comment
             st.subheader("➕ Add a New Comment")
-            new_comment = st.text_area("Write your comment here:", key="main_comment")
+            # Initialize session_state if not exists
+            if "new_comment" not in st.session_state:
+                st.session_state["new_comment"] = ""
+
+            new_comment = st.text_area("Write your comment here:", value=cookies.get("new_comment"), key="new_comment")
+
             if st.button("📤 Post Comment"):
                 if new_comment.strip():
                     comment_data = {
@@ -198,10 +207,12 @@ def show(cookies):
                         "unlikes": 0,
                         "createdAt": datetime.utcnow()
                     }
-                    comments_collection.insert_one(comment_data)
-                    st.success("✅ Comment posted!")
+                    comments_collection.insert_one(comment_data)                   
                     cookies["clear_text"] = True
+                    cookies["new_comment"] = ""
+                    st.success("✅ Comment posted!")
                     st.rerun()
+                    
 
     # Main App Logic
     add_comment()

@@ -7,8 +7,8 @@ def show():
 
     # Page Title with Custom Style
     st.markdown("""
-        <h1 style='text-align: center; color: #2E7ABC;'>အကြောင်းအရာ</h1>
-        <p style='text-align: right; font-style: italic; color: #555;'>အမျိုးသားဉာဏ်ရည်တုနည်းပညာဖွံ့ဖြိုးတိုးတက်ရေးစီမံကိန်း</p>
+        <h1 style='text-align: center; color: #2E7ABC; font-size: 2em;'>အကြောင်းအရာ</h1>
+        
     """, unsafe_allow_html=True)
 
 

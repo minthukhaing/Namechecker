@@ -27,7 +27,7 @@ def show(cookies):
     """, unsafe_allow_html=True)
     
 
-    st.title("Name Checker App")
+    st.write("Name Checker App")
     with st.container(border=True,key="container1"):
         #st.title("NAME CHECKER")
         result=""

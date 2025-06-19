@@ -3,6 +3,7 @@ streamlit-option-menu
 streamlit-cookies-manager
 pymongo
 aiofile
+streamlit-autorefresh
 
 request
 fastapi
