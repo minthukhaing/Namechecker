@@ -4,12 +4,12 @@ from utils.session_utils import initialize_session_state
 from streamlit_cookies_manager import CookieManager
 from streamlit_option_menu import option_menu
 
-st.set_page_config(
-    page_title="Name Checker App",
-    layout="wide",
-    page_icon="😊",
-    initial_sidebar_state="expanded"
-)
+# st.set_page_config(
+#     page_title="Name Checker App",
+#     layout="wide",
+#     page_icon="😊",
+#     initial_sidebar_state="expanded"
+# )
 
 
 
@@ -53,6 +53,7 @@ bg = f"""
           background-image: url(data:image/jpeg;base64,{encoded_img});
          background-size: cover;
          background-position: bottom;
+         width: 300px !important;
 
      }}
      </style>

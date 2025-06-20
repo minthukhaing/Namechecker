@@ -891,7 +891,7 @@ def transcript(text: str) -> str:
         # Rule 4.2: Singleton + Cluster + Cluster + AsatExtendedForm
         if (char in singleton and next in clusterForm and afterNext in clusterForm and allButSCC in asatExtendedForm):
             if thirdNext == 'ှ':
-                if ('ျ' in next or 'ြ' in next) and char in modifyForm:
+                if (('ျ' in next or 'ြ' in next) and char in modifyForm):
                     if 'ွ' in afterNext:
                         output.append(vowelForm[thirdNext] + modifyForm[char] + asatExtendedForm[allButSC])
                     else:
@@ -902,7 +902,7 @@ def transcript(text: str) -> str:
                     else:
                         output.append(vowelForm[thirdNext] + singleton[char] + clusterForm[next] + clusterForm[afterNext] + asatExtendedForm[allButSCC])
             else:
-                if ('ျ' in next or 'ြ' in next) and char in modifyForm:
+                if (('ျ' in next or 'ြ' in next) and char in modifyForm):
                     if 'ွ' in afterNext:
                         output.append(modifyForm[char] + asatExtendedForm[allButSC])
                     else:
@@ -920,7 +920,7 @@ def transcript(text: str) -> str:
             if afterNext == 'ှ':
                 if 'ွ' in next:
                     output.append("sh" + asatExtendedForm[allButS] if 'ရ' in char else vowelForm[afterNext] + singleton[char] + asatExtendedForm[allButS])
-                elif ('ျ' in next or 'ြ' in next) and char in modifyForm:
+                elif (('ျ' in next or 'ြ' in next) and char in modifyForm):
                     output.append(vowelForm[afterNext] + modifyForm[char] + asatExtendedForm[allButSC])
                 else:
                     output.append(vowelForm[afterNext] + singleton[char] + clusterForm[next] + asatExtendedForm[allButSC])
@@ -928,7 +928,7 @@ def transcript(text: str) -> str:
             else:
                 if 'ွ' in next:
                     output.append(singleton[char] + asatExtendedForm[allButS])
-                elif ('ျ' in next or 'ြ' in next) and char in modifyForm:
+                elif (('ျ' in next or 'ြ' in next) and char in modifyForm):
                     output.append(modifyForm[char] + asatExtendedForm[allButSC])
                 else:
                     output.append(singleton[char] + clusterForm[next] + asatExtendedForm[allButSC])
@@ -948,12 +948,12 @@ def transcript(text: str) -> str:
         # Rule 3.1: Singleton + Cluster + Cluster + VowelExtendedForm
         elif char in singleton and next in clusterForm and afterNext in clusterForm and allButSCC in vowelExtendedForm:
             if thirdNext == 'ှ':
-                if ('ျ' in next or 'ြ' in next) and char in modifyForm:
+                if (('ျ' in next or 'ြ' in next) and char in modifyForm):
                     output.append(vowelForm[thirdNext] + modifyForm[char] + clusterForm[afterNext] + vowelExtendedForm[allButSCC])
                 else:
                     output.append(vowelForm[thirdNext] + singleton[char] + clusterForm[next] + clusterForm[afterNext] + vowelExtendedForm[allButSCC])
             else:
-                if ('ျ' in next or 'ြ' in next) and char in modifyForm:
+                if (('ျ' in next or 'ြ' in next) and char in modifyForm):
                     output.append(modifyForm[char] + clusterForm[afterNext] + vowelExtendedForm[allButSCC])
                 else:
                     output.append(singleton[char] + clusterForm[next] + clusterForm[afterNext] + vowelExtendedForm[allButSCC])
@@ -964,22 +964,22 @@ def transcript(text: str) -> str:
         elif char in singleton and next in clusterForm and afterNext in clusterForm:
             if thirdNext in vowelForm:
                 if thirdNext == 'ှ':
-                    output.append(vowelForm[thirdNext] + (modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + clusterForm[afterNext] + "a")
+                    output.append(vowelForm[thirdNext] + (modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + clusterForm[afterNext] + "a")
                 else:
-                    output.append((modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + clusterForm[next] + clusterForm[afterNext] + vowelForm[thirdNext])
+                    output.append((modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + clusterForm[next] + clusterForm[afterNext] + vowelForm[thirdNext])
                 i += 4
             else:
-                output.append((modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + clusterForm[next] + clusterForm[afterNext] + "a")
+                output.append((modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + clusterForm[next] + clusterForm[afterNext] + "a")
                 i += 3
             continue
 
         # Rule 2.1: Singleton + Cluster + VowelExtendedForm
         elif char in singleton and next in clusterForm and allButSC in vowelExtendedForm:
             if afterNext == 'ှ':
-                output.append(vowelForm[afterNext] + (modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + vowelExtendedForm[allButSC])
+                output.append(vowelForm[afterNext] + (modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + vowelExtendedForm[allButSC])
                 i += 2 + len(allButSC)
             else:
-                output.append((modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + clusterForm[next] + vowelExtendedForm[allButSC])
+                output.append((modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + clusterForm[next] + vowelExtendedForm[allButSC])
                 i += 2 + len(allButSC)
             continue
 
@@ -989,10 +989,10 @@ def transcript(text: str) -> str:
                 if afterNext == 'ှ':
                     output.append("sh" + clusterForm[next] + "a" if 'ရ' in char else vowelForm[afterNext] + singleton[char] + clusterForm[next] + "a")
                 else:
-                    output.append((modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + clusterForm[next] + vowelForm[afterNext])
+                    output.append((modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + clusterForm[next] + vowelForm[afterNext])
                 i += 3
             else:
-                output.append((modifyForm[char] if ('ျ' in next or 'ြ' in next and char in modifyForm) else singleton[char]) + clusterForm[next] + "a")
+                output.append((modifyForm[char] if (('ျ' in next or 'ြ' in next) and char in modifyForm) else singleton[char]) + clusterForm[next] + "a")
                 i += 2
             continue
 

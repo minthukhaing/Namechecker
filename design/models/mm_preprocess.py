@@ -1,6 +1,6 @@
 import re
 import unicodedata
-import models.mm_transpitor as mm
+import models.mm_transpitor1 as mm
 
 all_prefixes = [
         "ဆရာတော်",

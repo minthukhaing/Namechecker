@@ -4,9 +4,9 @@ streamlit-cookies-manager
 pymongo
 aiofile
 streamlit-autorefresh
-
-request
+requests
 fastapi
 uvicorn
 python-jose[cryptography]
 passlib[bcrypt]
+pyperclip
